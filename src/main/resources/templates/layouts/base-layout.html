@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+  <head th:fragment="head">
+   <title></title>
+   <!-- CSS  -->
+   <link rel="stylesheet" th:href="@{/css/main.css}"/>
+   <!-- BOOTSTRAP  -->
+  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <!-- FONTAWESOME  -->
+       
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+  </head>
+  
+  
+  
+  <body>
+  
+  <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+  <a class="navbar-brand title" th:href="@{/}"s> <i class="fas fa-film"></i>&nbsp  FILMER</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link btn btn-dark bg-light mr-1" th:href="@{/}">HOME <span class="sr-only">(current)</span></a>
+      </li>
+      
+      
+      <li class="nav-item active">
+        <a class="nav-link btn btn-dark bg-light mr-1" th:href="@{/admin/peli-form}" sec:authorize="hasRole('ROLE_ADMIN')">AÑADIR
+         <span class="sr-only">(current)</span></a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link btn btn-dark bg-light mr-1" th:href="@{/admin/gestion-peliculas}" sec:authorize="hasRole('ROLE_ADMIN')">GESTIÓN PELÍCULAS
+         <span class="sr-only">(current)</span></a>
+      </li>
+    
+      
+      <li class="nav-item active">
+        <a class="nav-link btn btn-dark bg-light mr-1" th:href="@{/usuario/registro}">REGISTRO <span class="sr-only">(current)</span></a>
+      </li>
+     
+     <li class="nav-item active">
+        <a class="nav-link btn btn-dark bg-light mr-1" th:href="@{/login}" sec:authorize="!isAuthenticated()">LOGIN <span class="sr-only">(current)</span></a>
+      </li> 
+     
+     
+     
+    </ul>
+    
+     <!-- MENSAJE DE BIENVENIDA -->
+      
+      <div th:if="${username != null}" th:text="${username}" class="btn btn-outline-success mr-5"></div>
+      
+    
+    <!-- CIERRE SESIÓN -->
+     <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+     <Button type="submit" class="btn btn-default">Cerrar Sesión</Button>
+     </form>
+    
+    &nbsp &nbsp  &nbsp &nbsp
+    
+    
+   </div>
+  </div>
+</nav>
+
+    
+  </body>
+</html>
